@@ -3,7 +3,9 @@ const session = require("express-session");
 const passport = require("passport");
 const dotenv = require("dotenv");
 const path = require("path");
+const pgSession = require("connect-pg-simple")(session);
 const { getAllMessages, createMessage } = require("./db/pool");
+const { pool } = require("./db/pool");
 
 const app = express();
 
@@ -18,9 +20,14 @@ initializePassport();
 
 app.use(
   session({
-    secret: "session_secret",
+    store: new pgSession({
+      pool,
+      tableName: "session",
+    }),
+    secret: process.env.SESSION_SECRET || "your-secret",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    cookie: { secure: false },
   })
 );
 
