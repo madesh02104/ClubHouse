@@ -26,8 +26,11 @@ app.use(
     }),
     secret: process.env.SESSION_SECRET || "your-secret",
     resave: false,
-    saveUninitialized: true,
-    maxAge: 1000 * 60 * 60 * 24,
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 1000 * 60 * 60 * 24,
+    },
   })
 );
 
@@ -61,6 +64,19 @@ app.get("/", async (req, res) => {
     console.error(err);
     res.render("index", { user: req.user || null, messages: [] });
   }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+process.on("unhandledRejection", (reason, promise) => {
+  console.error("Unhandled Rejection at:", promise, "reason:", reason);
+});
+
+process.on("uncaughtException", (err) => {
+  console.error("Uncaught Exception thrown:", err);
+  process.exit(1);
 });
 
 const PORT = process.env.PORT || 3000;
