@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Message</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #121212;
+        color: #e0e0e0;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+      }
+      .container {
+        width: 90%;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 25px;
+        background-color: #1a1a1a;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        border: 1px solid #333;
+        border-top: 4px solid #4caf50;
+      }
+      h1 {
+        color: #4caf50;
+        text-align: center;
+        margin-bottom: 25px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      form div {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #333;
+        border-radius: 4px;
+        background-color: #222;
+        color: #e0e0e0;
+        font-size: 16px;
+        font-family: inherit;
+      }
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: #4caf50;
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-weight: bold;
+        align-self: flex-start;
+      }
+      button:hover {
+        background-color: #388e3c;
+      }
+      p {
+        margin-top: 25px;
+        text-align: center;
+      }
+      a {
+        color: #4caf50;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .message-tips {
+        background-color: #222;
+        padding: 15px;
+        border-radius: 6px;
+        margin-top: 30px;
+        border-left: 3px solid #4caf50;
+      }
+      .message-tips h3 {
+        color: #4caf50;
+        margin-top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Create a New Message</h1>
+
+      <form action="/messages/new" method="POST">
+        <div>
+          <label for="title">Title (optional):</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Add a title to your message"
+          />
+        </div>
+
+        <div>
+          <label for="text">Message:</label>
+          <textarea
+            id="text"
+            name="text"
+            required
+            rows="5"
+            cols="50"
+            placeholder="Type your message here..."
+          ></textarea>
+        </div>
+
+        <button type="submit">Post Message</button>
+      </form>
+
+      <p>
+        <a href="/">Back to Home</a> | <a href="/messages">View Messages</a>
+      </p>
+
+      <div class="message-tips">
+        <h3>Message Guidelines</h3>
+        <ul>
+          <li>Be respectful to other club members</li>
+          <li>Keep messages concise and on-topic</li>
+          <li>Use a title to summarize your message (optional)</li>
+          <li>Messages cannot be edited after posting</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
