@@ -65,6 +65,7 @@ app.get("/", async (req, res) => {
     res.render("index", { user: req.user || null, messages: [] });
   }
 });
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
@@ -79,7 +80,6 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
   console.log(`Server running on http://localhost:${PORT}`)
 );
