@@ -43,7 +43,10 @@ router.post(
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/login",
-  })
+  }),
+  (req, res) => {
+    console.log("Session after login:", req.session);
+  }
 );
 
 router.get("/logout", (req, res) => {
